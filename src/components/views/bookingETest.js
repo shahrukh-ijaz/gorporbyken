@@ -51,15 +51,34 @@ export default class BookingETest extends Component {
   render() {
     function convertToThiland(time)
     {
-      var date = moment(time, "YYYY-MM-DD hh:mm:ss")
+      var date = moment(time, "YYYY-MM-DD HH:mm:ss")
       .add(420, 'minutes')
-      .format('YYYY-MM-DD hh:mm:ss');
+      .format('YYYY-MM-DD HH:mm:ss');
 
         // var date = moment.utc(time).format('YYYY-MM-DD HH:mm:ss');
         // date = moment(time, "YYYY-MM-DD HH:mm:ss").add(5, 'hour');
         // console.log("check " ,date); // 2015-09-13 03:39:27
         // ///let new_date = 
         return date;
+    }
+    function getExamStartDifference(date1)
+    {
+      let date = convertToThiland(date1);
+      console.log("in thiland time ", date);
+
+      let date2 = momentTz().format('YYYY-MM-DD HH:mm:ss');
+      date2 = convertToThiland(date2);
+
+      console.log("current time ", date2);
+      var res = Math.abs(date - date2) / 1000;
+
+      var hours = Math.floor(res / 3600) % 24;   
+
+      console.log("difference ye h ", hours);
+
+  
+      return hours;
+
     }
     const {
       state: { exams }
@@ -97,7 +116,8 @@ export default class BookingETest extends Component {
                           <Text style={styles.text}>
                             Round For {`${object.name}\n`}
                           </Text>
-                          <Text style={styles.text}>            
+                          <Text style={styles.text}>     
+                            {`abc ${getExamStartDifference(object.start_time)}\n`}       
                             {`\nStart Time: ${convertToThiland(object.start_time)}\nEnd Time:${
                               convertToThiland(object.end_time)
                               }\n`}
