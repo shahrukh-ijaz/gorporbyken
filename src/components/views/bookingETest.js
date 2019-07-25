@@ -66,11 +66,15 @@ export default class BookingETest extends Component {
       let date = convertToThiland(date1);
       console.log("in thiland time ", date);
 
-      let date2 = momentTz().format('YYYY-MM-DD HH:mm:ss');
-      date2 = convertToThiland(date2);
 
-      console.log("current time ", date2);
-      var res = Math.abs(date - date2) / 1000;
+      var today = new Date();
+      var date_= today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      var time = (today.getHours()+2) + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var dateTime = date_+' '+time;
+      console.log(dateTime, "abhi ka h re");
+
+
+      var res = Math.abs(date - dateTime) / 1000;
 
       var hours = Math.floor(res / 3600) % 24;   
 
