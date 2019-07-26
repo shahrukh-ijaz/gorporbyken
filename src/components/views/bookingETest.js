@@ -55,33 +55,16 @@ export default class BookingETest extends Component {
       .add(420, 'minutes')
       .format('YYYY-MM-DD HH:mm:ss');
 
-        // var date = moment.utc(time).format('YYYY-MM-DD HH:mm:ss');
-        // date = moment(time, "YYYY-MM-DD HH:mm:ss").add(5, 'hour');
-        // console.log("check " ,date); // 2015-09-13 03:39:27
-        // ///let new_date = 
+      
         return date;
     }
     function getExamStartDifference(date1)
     {
       let date = convertToThiland(date1);
-      console.log("in thiland time ", date);
 
-
-      var today = new Date();
-      var date_= today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-      var time = (today.getHours()+2) + ":" + today.getMinutes() + ":" + today.getSeconds();
-      var dateTime = date_+' '+time;
-      console.log(dateTime, "abhi ka h re");
-
-
-      var res = Math.abs(date - dateTime) / 1000;
-
-      var hours = Math.floor(res / 3600) % 24;   
-
-      console.log("difference ye h ", hours);
-
-  
-      return hours;
+      dateTime = momentTz().tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss')  
+      date = moment(date);
+      return dateTime.diff(date, 'seconds');
 
     }
     const {
@@ -120,18 +103,17 @@ export default class BookingETest extends Component {
                           <Text style={styles.text}>
                             Round For {`${object.name}\n`}
                           </Text>
-                          <Text style={styles.text}>     
-                            {`abc ${getExamStartDifference(object.start_time)}\n`}       
+                          <Text style={styles.text}>           
                             {`\nStart Time: ${convertToThiland(object.start_time)}\nEnd Time:${
                               convertToThiland(object.end_time)
                               }\n`}
                           </Text>
                         </View>
-                        <View style={styles.buttonView}>
+                        <View style={styles.buttonView}>                          
                           {object.booking ? (
                             momentTz(
                               object.start_time
-                            ).tz('Asia/Bangkok').diff(momentTz()) > 0 ? (
+                            ).add(420, 'minutes').diff(momentTz().tz('Asia/Bangkok')) > 0 ? (
                                 <Button
                                   style={styles.button}
                                   onPress={() => {
@@ -141,24 +123,28 @@ export default class BookingETest extends Component {
                                   }}
                                 >
                                   <Text style={styles.buttonText}>
+                                    
                                     <TimerCountdown
-                                      initialMilliseconds={momentTz(
-                                        object.start_time
-                                      ).tz('Asia/Bangkok').diff(momentTz())}
-                                      formatMilliseconds={milliseconds => {
-                                        const remainingSec = Math.round(
-                                          milliseconds / 1000
-                                        );
+                                    return
+                                      formatMilliseconds={milliseconds => {                                    
+                                        var diff = momentTz(
+                                          object.start_time
+                                        ).add(420, 'minutes').diff(momentTz().tz('Asia/Bangkok'));
+                                        
+                                        var duration = diff/1000;
+
+                                        // console.log(momentTz(momentTz()).tz('Asia/Bangkok').format("YYYY-MM-DD HH:mm:ss"));
+
                                         const seconds = parseInt(
-                                          (remainingSec % 60).toString(),
+                                          (duration % 60).toString(),
                                           10
                                         );
                                         const minutes = parseInt(
-                                          ((remainingSec / 60) % 60).toString(),
+                                          ((duration / 60) % 60).toString(),
                                           10
                                         );
                                         const hours = parseInt(
-                                          (remainingSec / 3600).toString(),
+                                          (duration / 3600).toString(),
                                           10
                                         );
                                         const s =
@@ -167,13 +153,14 @@ export default class BookingETest extends Component {
                                           minutes < 10 ? "0" + minutes : minutes;
                                         let h = hours < 10 ? "0" + hours : hours;
                                         h = h === "00" ? "" : h + ":";
+                                        // return "timer will display here";
                                         return h + m + ":" + s;
                                       }}
                                       allowFontScaling={true}
                                     />
                                   </Text>
                                 </Button>
-                              ) : momentTz(object.end_time).tz('Asia/Bangkok').diff(momentTz()) > 0 ? (
+                              ) : momentTz(object.end_time).tz('Asia/Bangkok').add(420, 'minutes').diff(momentTz()) > 0 ? (
                                 <Button
                                   style={styles.button}
                                   onPress={() => {

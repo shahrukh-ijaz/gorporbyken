@@ -6,6 +6,8 @@ import Swiper from "react-native-swiper";
 import { CheckBox } from "react-native-elements";
 import CustomFooter from "../customComponents/footer";
 import { Header } from "react-native-elements";
+import moment from "moment";
+import momentTz from 'moment-timezone'
 
 export default class AfterLevel extends Component {
   constructor(props) {
@@ -61,6 +63,7 @@ export default class AfterLevel extends Component {
   };
 
   render() {
+   
     const {
       props: {
         navigation: {
@@ -70,6 +73,15 @@ export default class AfterLevel extends Component {
         }
       }
     } = this;
+    function convertToThiland(time)
+    {
+      var date = moment(time, "YYYY-MM-DD HH:mm:ss")
+      .add(420, 'minutes')
+      .format('YYYY-MM-DD HH:mm:ss');
+
+      
+        return date;
+    }
     return (
       <React.Fragment>
         <Header
@@ -98,7 +110,7 @@ export default class AfterLevel extends Component {
                   this.setState({ checkbox1: !this.state.checkbox1 })
                 }
                 style={styles.checkBox}
-                title={`${exam.start_time} - ${exam.end_time}`}
+                title={`start time: ${convertToThiland(exam.start_time)} \nend time: ${convertToThiland(exam.end_time)}`}
               />
               <View style={styles.buttonView}>
                 <Button style={styles.button} onPress={this._bookExam}>
