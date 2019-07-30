@@ -22,7 +22,7 @@ export default class BeforeExam extends Component {
     let authToken = await AsyncStorage.getItem("authToken");
     try {
       let examStartResponse = await fetch(
-        `https://www.gorporbyken.com/api/exam/rules`,
+        `https://api.gorporbyken.com/api/exam/rules`,
         {
           method: "GET",
           headers: {
@@ -69,7 +69,7 @@ export default class BeforeExam extends Component {
       var formData = new FormData();
       formData.append("exam", exam.id);
       let examStartResponse = await fetch(
-        `https://www.gorporbyken.com/api/exam/start`,
+        `https://api.gorporbyken.com/api/exam/start`,
         {
           method: "POST",
           headers: {

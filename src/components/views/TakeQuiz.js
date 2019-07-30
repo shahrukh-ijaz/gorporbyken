@@ -28,7 +28,7 @@ export default class TakeQuiz extends Component {
     this.setState({ isLoading: true });
     try {
       let response = await fetch(
-        "https://www.gorporbyken.com/api/quiz?category=" + category,
+        "https://api.gorporbyken.com/api/quiz?category=" + category,
         {
           method: "GET",
           headers: {

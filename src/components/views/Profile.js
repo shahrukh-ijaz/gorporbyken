@@ -42,8 +42,9 @@ export default class Profile extends Component {
       isLoading: false
     });
     try {
+      
       let response = await fetch(
-        "https://www.gorporbyken.com/api/user/details",
+        "https://api.gorporbyken.com/api/user/details",
         {
           method: "POST",
           headers: {
@@ -54,18 +55,11 @@ export default class Profile extends Component {
         }
       );
       let responseJson = await response.json();
-      console.log("Profile", responseJson);
-      // console.log("responseJson.success",responseJson.success);
 
       if (responseJson.success) {
         await AsyncStorage.setItem("userName", responseJson.success.name);
         AsyncStorage.setItem("Member", responseJson.success.paid);
         this.setState({ user: responseJson.success, isLoading: false });
-      } else {
-        // this.setState(() => ({
-        //   loginError: "Email or Password doesn't match",
-        //   isLoading: false
-        // }));
       }
     } catch (error) {
       console.log("error", error);
@@ -105,7 +99,7 @@ export default class Profile extends Component {
           // console.log("formData", formData);
           const authToken = await AsyncStorage.getItem("authToken");
           const response = await fetch(
-            "https://www.gorporbyken.com/api/user/update-profle-photo",
+            "https://api.gorporbyken.com/api/user/update-profle-photo",
             {
               method: "POST",
               headers: {
@@ -117,7 +111,7 @@ export default class Profile extends Component {
             }
           );
           const responseJson = await response.json();
-          console.log("responseJson", responseJson);
+          // console.log("responseJson", responseJson);
           if (responseJson.success) {
             this.setState({
               user: {

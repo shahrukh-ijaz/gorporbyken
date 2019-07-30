@@ -19,7 +19,7 @@ export default class OnlineLesson extends Component {
     this.setState({ membershipStatus: await AsyncStorage.getItem("Member") });
     try {
       const authToken = await AsyncStorage.getItem("authToken");
-      const response = await fetch("https://www.gorporbyken.com/api/lesson", {
+      const response = await fetch("https://api.gorporbyken.com/api/lesson", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -29,7 +29,7 @@ export default class OnlineLesson extends Component {
         body: JSON.stringify({})
       });
       const responseJson = await response.json();
-      // console.log(responseJson);
+      console.log(responseJson);
       if (responseJson.success.length) {
         this.setState(state => ({
           ...state,

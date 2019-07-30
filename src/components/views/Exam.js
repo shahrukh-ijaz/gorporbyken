@@ -61,7 +61,7 @@ export default class Exam extends Component {
     this.setState({ isLoading: true });
     try {
       let response = await fetch(
-        "https://www.gorporbyken.com/api/quiz/details?id=" + id,
+        "https://api.gorporbyken.com/api/quiz/details?id=" + id,
         {
           method: "GET",
           headers: {

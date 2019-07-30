@@ -15,7 +15,6 @@ class Signin extends Component {
   }
   componentDidMount = async () => {
     let token = await AsyncStorage.getItem("authToken");
-    // console.log(token);
     if (token != undefined) {
       this.props.navigation.navigate("App");
     } else {
@@ -35,7 +34,7 @@ class Signin extends Component {
         this.setState(() => ({ passwordError: null }));
         this.setState({ isLoading: true });
         try {
-          let response = await fetch("https://www.gorporbyken.com/api/login", {
+          let response = await fetch("https://api.gorporbyken.com/api/login", {
             method: "POST",
             headers: {
               Accept: "application/json",
@@ -48,13 +47,12 @@ class Signin extends Component {
           });
           let responseJson = await response.json();
           if (responseJson.success) {
-            // console.log("Signed In");
             // await AsyncStorage.setItem("Member", responseJson.success.paid);
             let token = responseJson.success.token;
             await AsyncStorage.setItem("authToken", responseJson.success.token);
             try {
               let response = await fetch(
-                "https://www.gorporbyken.com/api/user/details",
+                "https://api.gorporbyken.com/api/user/details",
                 {
                   method: "POST",
                   headers: {
@@ -65,7 +63,6 @@ class Signin extends Component {
                 }
               );
               let responseJson = await response.json();
-              // console.log("Profile", responseJson);
               if (responseJson.success) {
                 await AsyncStorage.setItem(
                   "userName",

@@ -24,7 +24,7 @@ export default class BookingETest extends Component {
     try {
       console.log("sending Request");
       const authToken = await AsyncStorage.getItem("authToken");
-      const response = await fetch("https://www.gorporbyken.com/api/exam", {
+      const response = await fetch("https://api.gorporbyken.com/api/exam", {
         method: "GET",
         headers: {
           Accept: "application/json",

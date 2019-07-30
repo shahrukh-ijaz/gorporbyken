@@ -16,11 +16,11 @@ export default class Quiz extends Component {
 
   async componentDidMount() {
     const authToken = await AsyncStorage.getItem("authToken");
-    console.log("fetching categories");
+    // console.log("fetching categories", authToken);
     this.setState({ isLoading: true });
     try {
       let response = await fetch(
-        "https://www.gorporbyken.com/api/quiz-category",
+        "https://api.gorporbyken.com/api/quiz-category",
         {
           method: "GET",
           headers: {

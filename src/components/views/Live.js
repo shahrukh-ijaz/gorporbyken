@@ -64,7 +64,7 @@ export default class Live extends Component {
 
     try {
       let response = await fetch(
-        `https://www.gorporbyken.com/api/exam/details?id=${exam.id}&level=1`,
+        `https://api.gorporbyken.com/api/exam/details?id=${exam.id}&level=1`,
         {
           method: "GET",
           headers: {

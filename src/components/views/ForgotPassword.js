@@ -20,7 +20,7 @@ export default class ForgotPassword extends Component {
           style={{ flex: 1, marginTop: 25 }}
           javaScriptEnabled={true}
           domStorageEnabled={true}
-          source={{ uri: "https://www.gorporbyken.com/password/reset" }}
+          source={{ uri: "https://api.gorporbyken.com/api/password/reset" }}
         />
       </View>
     );

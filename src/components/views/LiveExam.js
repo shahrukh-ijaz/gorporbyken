@@ -42,7 +42,7 @@ export default class LiveExam extends Component {
 
     try {
       let response = await fetch(
-        `https://www.gorporbyken.com/api/exam/details?id=${exam.id}&level=1`,
+        `https://api.gorporbyken.com/api/exam/details?id=${exam.id}&level=1`,
         {
           method: "GET",
           headers: {
@@ -216,7 +216,7 @@ export default class LiveExam extends Component {
         );
       }
       // console.log(formData);
-      let response = await fetch(`https://www.gorporbyken.com/api/exam/save`, {
+      let response = await fetch(`https://api.gorporbyken.com/api/exam/save`, {
         method: "POST",
         headers: {
           Accept: "application/json",

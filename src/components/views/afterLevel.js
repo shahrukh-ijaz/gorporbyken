@@ -36,7 +36,7 @@ export default class AfterLevel extends Component {
       console.log("formData", formData);
       const authToken = await AsyncStorage.getItem("authToken");
       const response = await fetch(
-        "https://www.gorporbyken.com/api/exam/booking",
+        "https://api.gorporbyken.com/api/exam/booking",
         {
           method: "POST",
           headers: {

@@ -53,7 +53,7 @@ export default class Signup extends Component {
             this.setState({ isLoading: true });
             try {
               let response = await fetch(
-                "https://www.gorporbyken.com/api/register",
+                "https://api.gorporbyken.com/register",
                 {
                   method: "POST",
                   headers: {
