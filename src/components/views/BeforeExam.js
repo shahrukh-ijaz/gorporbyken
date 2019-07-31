@@ -136,7 +136,7 @@ export default class BeforeExam extends Component {
               <Text style={styles.timer}>Exam starts in {"\n"}</Text>
               <Text style={styles.timer}>
                 <TimerCountdown
-                  initialMilliseconds={1000 * 60 * 5}
+                  initialMilliseconds={60 * 60 * 5}
                   formatMilliseconds={milliseconds => {
                     const remainingSec = Math.round(milliseconds / 1000);
                     const seconds = parseInt(

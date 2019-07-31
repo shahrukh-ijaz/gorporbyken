@@ -19,6 +19,7 @@ export default class OnlineLesson extends Component {
     this.setState({ membershipStatus: await AsyncStorage.getItem("Member") });
     try {
       const authToken = await AsyncStorage.getItem("authToken");
+      console.log("token" , authToken);
       const response = await fetch("https://api.gorporbyken.com/api/lesson", {
         method: "POST",
         headers: {
