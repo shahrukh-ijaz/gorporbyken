@@ -39,7 +39,6 @@ export default class TakeQuiz extends Component {
         }
       );
       let responseJson = await response.json();
-      // console.log("Quizes", responseJson);
       if (responseJson.success) {
         this.setState({ quizes: responseJson.success });
         this.setState({ isLoading: false });

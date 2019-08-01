@@ -19,7 +19,6 @@ export default class OnlineLesson extends Component {
     this.setState({ membershipStatus: await AsyncStorage.getItem("Member") });
     try {
       const authToken = await AsyncStorage.getItem("authToken");
-      console.log("token" , authToken);
       const response = await fetch("https://api.gorporbyken.com/api/lesson", {
         method: "POST",
         headers: {
@@ -30,7 +29,7 @@ export default class OnlineLesson extends Component {
         body: JSON.stringify({})
       });
       const responseJson = await response.json();
-      console.log(responseJson);
+      console.log(responseJson.success[0].videos[0]);
       if (responseJson.success.length) {
         this.setState(state => ({
           ...state,
@@ -88,7 +87,7 @@ export default class OnlineLesson extends Component {
                     </ListItem>
                     {object.videos &&
                       object.videos.length &&
-                      object.videos[0].map((videoObject, key) => (
+                      object.videos.map((videoObject, key) => (
                         <ListItem
                           key={key}
                           onPress={() => {

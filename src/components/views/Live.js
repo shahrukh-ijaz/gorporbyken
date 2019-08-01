@@ -259,7 +259,7 @@ export default class Live extends Component {
         );
       }
       // console.log(formData);
-      let response = await fetch(`https://www.gorporbyken.com/api/exam/save`, {
+      let response = await fetch(`https://api.gorporbyken.com/api/exam/save`, {
         method: "POST",
         headers: {
           Accept: "application/json",

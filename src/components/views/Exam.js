@@ -57,7 +57,7 @@ export default class Exam extends Component {
         }
       }
     } = this;
-    // console.log(id, type);
+    console.log(id, type);
     this.setState({ isLoading: true });
     try {
       let response = await fetch(
@@ -72,9 +72,10 @@ export default class Exam extends Component {
         }
       );
       let responseJson = await response.json();
-      // console.log("Questions", responseJson.success.questions);
+      console.log(responseJson);
       if (responseJson.success) {
-        this.setState({ questions: responseJson.success.questions });
+        // console.log("iinner", responseJson.success[0].questions);
+        this.setState({ questions: responseJson.success[0].questions });
         // console.log(this.state.questions.length);
         this.setState({
           totalQuestions: this.state.questions.length - 1,
@@ -88,7 +89,7 @@ export default class Exam extends Component {
         // }));
       }
     } catch (error) {
-      console.log("error", error);
+      console.log("error->", error);
       // this.props.navigation.navigate("Signin");
     }
   }

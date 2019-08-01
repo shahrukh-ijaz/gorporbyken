@@ -40,7 +40,7 @@ export default class ChangePassword extends Component {
       formData.append("password_confirmation", this.state.confirmPassword);
       console.log("formData", formData);
       const response = await fetch(
-        "https://www.gorporbyken.com/api/user/change-password",
+        "https://api.gorporbyken.com/api/user/change-password",
         {
           method: "POST",
           headers: {
