@@ -158,7 +158,7 @@ export default class Exam extends Component {
           >
             <View style={{ marginTop: 22, marginHorizontal: 30 }}>
               <Text>Explanation</Text>
-              <ScrollView>
+              <ScrollView style={{ flex: 1 }}>
                 <HTML
                   html={question.explanation}
                   imagesMaxWidth={Dimensions.get("window").width}

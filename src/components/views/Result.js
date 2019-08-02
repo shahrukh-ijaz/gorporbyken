@@ -20,7 +20,7 @@ export default class Result extends Component {
       console.log("sending Request");
       const authToken = await AsyncStorage.getItem("authToken");
       const response = await fetch(
-        "https://www.gorporbyken.com/api/exam/attempted",
+        "https://api.gorporbyken.com/api/exam/attempted",
         {
           method: "GET",
           headers: {
